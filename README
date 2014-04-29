@@ -1,0 +1,27 @@
+required environment variables (put them in .env and foreman will pick them up:)
+
+MANDRILL_APIKEY: your API key for the mandrill email platform
+MANDRILL_USERNAME: your username for mandrill
+FROM_EMAIL: the "from" address on the email to be sent out
+FROM_NAME: the "full name" on the email to be sent out
+EMAIL_SUBJECT: the subject line on the email to be sent out
+
+----
+Usage:
+----
+
+1. create a 'people' CSV file with the following fields:
+
+  ID,NAME,DETAILS,EMAIL ADDRESS,EXCLUSIONS
+
+  the "DETAILS" field will generally contain a mailing address but can include other instructions. HTML <br> tags are supported.
+  the "EXCLUSIONS" field should be a semicolon-separated list of ids (from the first column) signifying people that the person should not be assigned to give a gift to.
+
+2. create a 'template' text file. Use the following %%DOUBLE_PERCENT_DELIMITED%% variable names in the template to substitute the specifics for a given email to a particular person:
+
+  %%NAME%% : used to address the person receiving the email
+  %%GIVING_TO%% : used to give the name of the person they're giving a gift to
+  %%DETAILS%% : the DETAILS field from the CSV, usually the mailing address to send the gift to
+
+
+3. You can test the assignments via `rake test_assign people.csv`, and once you're confident that you have your people file configured correctly with all exclusions, you can send the emails with `rake email_assign people.csv email.txt`.
