@@ -21,8 +21,8 @@ Create a 'people' CSV file with the following fields (no header):
   ID,NAME,ADDRESS,EMAIL ADDRESS,DETAILS,EXCLUSIONS
 ```
 
-The "DETAILS" field will generally contain a mailing address but can include other instructions. Line breaks are supported.
-The "EXCLUSIONS" field should be a semicolon-separated list of ids (from the first column) signifying people that the person should not be assigned to give a gift to (for instance, if they are not willing to ship internationally, or whatever).
+* The `DETAILS` field will generally contain a mailing address but can include other instructions. Line breaks are supported.
+* The `EXCLUSIONS` field should be a semicolon-separated list of ids (from the first column) signifying people that the person should not be assigned to give a gift to (for instance, if they are not willing to ship internationally and that person lives outside of their country, or whatever).
 
 ## Email Template
 
