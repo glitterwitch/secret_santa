@@ -34,6 +34,12 @@ Create a 'template' text file. Use the following %%DOUBLE_PERCENT_DELIMITED%% va
 * `%%DETAILS%%`: the DETAILS field from the CSV (most likely gift hints)
 
 ## Running the script
-You can test the assignments via `bundle exec rake test_assign['people.csv']`
+You can test the assignments via:
+```
+bundle exec rake test_assign['people.csv']
+```
 
-Once you're confident that you have your people file configured correctly with all exclusions, you can send the emails with `bundle exec rake email_assign['people.csv','email.txt']`.
+Once you're confident that you have your people file configured correctly with all exclusions, you can send the emails with:
+```
+bundle exec rake email_assign['people.csv','email.txt']
+```
