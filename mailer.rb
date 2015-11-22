@@ -1,20 +1,23 @@
-require 'mandrill'
-
+require 'pony'
 module Mailer
-  def self.send_email(email_address, subject,body)
+  def self.send_email(email_address, subject, body, gmail_username, gmail_password)
     return if body.nil?
 
-    mailer = Mandrill::API.new
-    config = {
-      html: body,
-      from_email: ENV['FROM_EMAIL'],
-      from_name: ENV['FROM_NAME'],
-      subject: subject,
-      to: [ {email: email_address} ],
-      async: true
-    }
-    result = mailer.messages.send(config)
-    (result.first)[:status] == "sent"
+    Pony.mail({
+        :to => email_address,
+        :body => body,
+        :subject => subject,
+        :via => :smtp,
+        :via_options => {
+          :address => 'smtp.gmail.com',
+          :port => '587',
+          :enable_starttls_auto => true,
+          :user_name => gmail_username,
+          :password => gmail_password,
+          :authentication => :plain,
+          :domain => 'localhost.localdomain'
+        }
+    })
 
     puts "sent to #{email_address}"
   end
