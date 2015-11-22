@@ -1,4 +1,5 @@
 require_relative 'secret_santa'
+require 'dotenv/tasks'
 
 desc "read in people from a file"
 task :test_create, [:filename] do |t, args|
@@ -6,7 +7,7 @@ task :test_create, [:filename] do |t, args|
 end
 
 desc "try to email people"
-task :email_assign, [:people_file,:template_file] do |t, args|
+task :email_assign, [:people_file,:template_file] => :dotenv do |t, args|
   people = people_from_file(args.people_file)
   assign_exchange!(people)
 
